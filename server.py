@@ -1,17 +1,16 @@
-from flask import Flask
+from flask import Flask, jsonify
+import requests
+from bs4 import BeautifulSoup
+import os
 
 app = Flask(__name__)
 
+# Root route to confirm backend is running
 @app.route('/')
 def home():
     return '✅ Backend is running!'
 
-from flask import Flask, jsonify
-import requests
-from bs4 import BeautifulSoup
-
-app = Flask(__name__)
-
+# Events scraping API
 @app.route('/events')
 def get_events():
     url = 'https://www.timeout.com/sydney/things-to-do'
@@ -34,7 +33,7 @@ def get_events():
 
     return jsonify(events)
 
+# Run app
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
