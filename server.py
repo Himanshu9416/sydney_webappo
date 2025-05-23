@@ -1,3 +1,11 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return '✅ Backend is running!'
+
 from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
